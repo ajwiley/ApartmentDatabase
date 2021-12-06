@@ -36,6 +36,53 @@ namespace ApartmentProgram {
             }
         }
 
+        private List<string> _BuildingRows = new List<string>();
+        public List<string> BuildingRows {
+            get => _BuildingRows;
+            set {
+                _BuildingRows = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> _leaseRows = new List<string>();
+        public List<string> leaseRows {
+            get => _leaseRows;
+            set {
+                _leaseRows = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> _MaintenanceCORows = new List<string>();
+        public List<string> MaintenanceCORows {
+            get => _MaintenanceCORows;
+            set {
+                _MaintenanceCORows = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> _ServicesRows = new List<string>();
+        public List<string> ServicesRows {
+            get => _ServicesRows;
+            set {
+                _ServicesRows = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<string> _TenantRows = new List<string>();
+        public List<string> TenantRows {
+            get => _TenantRows;
+            set {
+                _TenantRows = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
+
         private int _ApartmentRowSelected = 0;
         public int ApartmentRowSelected {
             get => _ApartmentRowSelected;

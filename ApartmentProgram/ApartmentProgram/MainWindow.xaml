@@ -7,10 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click" Height="44" Width="91"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,59,0,0" TextWrapping="Wrap" Text="{Binding Data, Mode=TwoWay}" VerticalAlignment="Top" Height="365" Width="780"/>
-        <TextBox HorizontalAlignment="Left" Margin="231,14,0,0" TextWrapping="Wrap" Text="{Binding Command, Mode=TwoWay}" VerticalAlignment="Top" Width="559" Height="40"/>
-        <ComboBox HorizontalAlignment="Left" Margin="106,12,0,0" ItemsSource="{Binding ApartmentRows}" VerticalAlignment="Top" Width="120" Height="42" SelectedIndex="{Binding ApartmentRowSelected}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        
+        <TabControl>
+            <TabItem Header="Main thing">
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Click="Button_Click" Height="44" Width="91"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="95,128,0,0" TextWrapping="Wrap" Text="{Binding Data, Mode=TwoWay}" VerticalAlignment="Top" Height="134" Width="247"/>
+                    <TextBox HorizontalAlignment="Left" Margin="231,14,0,0" TextWrapping="Wrap" Text="{Binding Command, Mode=TwoWay}" VerticalAlignment="Top" Width="559" Height="40"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="106,12,0,0" ItemsSource="{Binding ApartmentRows}" VerticalAlignment="Top" Width="120" Height="42" SelectedIndex="{Binding ApartmentRowSelected}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

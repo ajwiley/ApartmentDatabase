@@ -23,6 +23,17 @@ namespace ApartmentProgram {
     public partial class MainWindow : Window {
         private BoundProperties _BoundProperties = new();
         string Connect = "server=localhost;userid=root;database=apartments;password=aronwiley10";
+        string ApartmentsInBuilding = "select count(isAvailable) from apartment where buildingNum = "; // Add inputted number
+        string BedBath = "select numBeds, numBaths from apartment where aNum = "; // Add inputted number
+        string isAptleased = "select isAvailable from apartment where aNum = ";
+        string WhoIsRentingApt = "select headOfHouse from Lease where aptNum = ";
+        string RentValue = "select monthlyRent from Lease where aNum = ";
+        string TenantContact = "select phone, email from Tenant where ssn = ";
+        string Vehciles = "select make,model,year,color from Vehicle where ownerID = ";
+        string TypeOfService = "select cType from maintenanceco where cID = ";
+        string CompanyWorkedOn = "select aptID from services where companyID = ";
+        string CompanyWorkedOnWhen = "select date from services where companyID = ";
+
 
         public MainWindow() {
             InitializeComponent();
@@ -30,10 +41,12 @@ namespace ApartmentProgram {
 
             //Debug.WriteLine(GetValueFromDBUsing("select * from apartment"));
         }
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            _BoundProperties.Data = GetValueFromDBUsing(TenantContact + _BoundProperties.Command, new string[] { "phone", "email" });
+            //_BoundProperties.Data = OtherSQLCommands(WhoIsRentingApt + _BoundProperties.Command);
+        }
 
-        private string GetValueFromDBUsing(string strQuery) {
-            string? strData = "";
-
+        private string GetValueFromDBUsing(string strQuery, string[] rows) {
             try {
                 if (string.IsNullOrEmpty(strQuery) == true) {
                     return string.Empty;
@@ -41,38 +54,21 @@ namespace ApartmentProgram {
 
                 using (var con = new MySqlConnection(Connect)) {
                     Debug.WriteLine("connected!");
-                    MySqlCommand cmd = new MySqlCommand(strQuery, con);
+                    MySqlCommand cmd = new(strQuery, con);
                     con.Open();
-                    return cmd.ExecuteScalar().ToString();
+                    using (MySqlDataReader reader = cmd.ExecuteReader()) {
+                        if (reader.Read()) {
+                            string ret = "";
 
-                    //using (MySqlCommand cmd = con.CreateCommand()) {
-                    //    cmd.CommandType = CommandType.Text;
-                    //    cmd.CommandTimeout = 300;
-                    //    cmd.CommandText = strQuery;
+                            foreach (string row in rows) {
+                                ret += string.Format("{0}: {1}", row, reader[row]) + "\n";
+                            }
 
-                    //    object? objValue = cmd.ExecuteScalar();
+                            return ret.Trim();
+                        }
+                    }
 
-                    //    if (objValue == null) {
-                    //        cmd.Dispose();
-                    //        return string.Empty;
-                    //    }
-                    //    else {
-                    //        cmd.CommandType = CommandType.Text;
-                    //        cmd.CommandTimeout = 300;
-                    //        cmd.CommandText = strQuery;
-                    //        strData = cmd.ExecuteScalar() as string;
-                    //        cmd.Dispose();
-                    //    }
-
-                    //    con.Close();
-
-                    //    if (strData == null) {
-                    //        return string.Empty;
-                    //    }
-                    //    else {
-                    //        return strData;
-                    //    }
-                    //}
+                    return string.Empty;
                 }
             }
             catch (MySqlException ex) {
@@ -86,8 +82,29 @@ namespace ApartmentProgram {
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            _BoundProperties.Data = GetValueFromDBUsing("select " + _BoundProperties.ApartmentRows[_BoundProperties.ApartmentRowSelected] + " from apartment where aNum = " + _BoundProperties.Command);
+        private string OtherSQLCommands(string strQuery) {
+            try {
+                if (string.IsNullOrEmpty(strQuery) == true) {
+                    return string.Empty;
+                }
+
+                using (var con = new MySqlConnection(Connect)) {
+                    Debug.WriteLine("connected!");
+                    MySqlCommand cmd = new(strQuery, con);
+                    con.Open();
+
+                    return cmd.ExecuteScalar().ToString();
+                }
+            }
+            catch (MySqlException ex) {
+                return ex.Message;
+            }
+            catch (Exception ex) {
+                return ex.Message;
+            }
+            finally {
+
+            }
         }
     }    
 }
