@@ -9,7 +9,7 @@
     <Grid>
 
         <TabControl>
-            <TabItem Header="Main thing">
+            <TabItem Header="Apartments">
                 <Grid Background="#FFE5E5E5">
                     <DataGrid Margin="10,10,324,10" ItemsSource="{Binding Apartments, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
                         <DataGrid.Columns>
@@ -21,12 +21,88 @@
                             <DataGridTextColumn Header="Building Number" Binding="{Binding buildingNum}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox HorizontalAlignment="Left" Margin="593,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentlyRented}" VerticalAlignment="Top" Width="100" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"/>
+                    <TextBox HorizontalAlignment="Left" Margin="593,10,0,0" TextWrapping="Wrap" Text="{Binding CurrentlyRented, Mode=OneWay}" VerticalAlignment="Top" Width="100" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsReadOnly="True"/>
                     <Label Content="# of Available apts.:" HorizontalAlignment="Left" Margin="475,10,0,0" VerticalAlignment="Top"/>
+                    
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+            <TabItem Header="Buildings">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,590,10" ItemsSource="{Binding Buildings, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Building Number" Binding="{Binding bNum}"/>
+                            <DataGridTextColumn Header="Pets Allowed" Binding="{Binding petsAllowed}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Leases">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,51,10" ItemsSource="{Binding Leases, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Lease ID" Binding="{Binding lID}"/>
+                            <DataGridTextColumn Header="Deposit" Binding="{Binding deposit}"/>
+                            <DataGridTextColumn Header="Monthly Rent" Binding="{Binding monthlyRent}"/>
+                            <DataGridTextColumn Header="Start Date" Binding="{Binding startDate}"/>
+                            <DataGridTextColumn Header="End Date" Binding="{Binding endDate}"/>
+                            <DataGridTextColumn Header="Apartment number" Binding="{Binding aptNum}"/>
+                            <DataGridTextColumn Header="Primary Tenant" Binding="{Binding primaryTenant}"/>
+                            <DataGridTextColumn Header="Secondary Tenant" Binding="{Binding secondaryTenant}"/>
+                            <DataGridTextColumn Header="Tertiary Tenant" Binding="{Binding tertiaryTenant}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Mainteance Companies">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,507,10" ItemsSource="{Binding MaintenanceCO, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Company ID" Binding="{Binding cID}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding cName}"/>
+                            <DataGridTextColumn Header="Type" Binding="{Binding cType}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Services">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,316,10" ItemsSource="{Binding Services, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Invoice ID" Binding="{Binding invoiceID}"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
+                            <DataGridTextColumn Header="Company" Binding="{Binding companyID}"/>
+                            <DataGridTextColumn Header="Apartment" Binding="{Binding aptID}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Tenants">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,204,10" ItemsSource="{Binding Tenants, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ssn" Binding="{Binding ssn}"/>
+                            <DataGridTextColumn Header="First Name" Binding="{Binding firstName}"/>
+                            <DataGridTextColumn Header="Last Name" Binding="{Binding lastName}"/>
+                            <DataGridTextColumn Header="Phone #" Binding="{Binding phone}"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding email}"/>
+                            <DataGridTextColumn Header="Gender" Binding="{Binding gender}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Vehicles">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid Margin="10,10,204,10" ItemsSource="{Binding Vehicles, Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Vin" Binding="{Binding vinNumber}"/>
+                            <DataGridTextColumn Header="Make" Binding="{Binding make}"/>
+                            <DataGridTextColumn Header="Model" Binding="{Binding model}"/>
+                            <DataGridTextColumn Header="Year" Binding="{Binding year}"/>
+                            <DataGridTextColumn Header="Color" Binding="{Binding color}"/>
+                            <DataGridTextColumn Header="Owner" Binding="{Binding ownerID}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </TabItem>
         </TabControl>
 
