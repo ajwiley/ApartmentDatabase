@@ -51,6 +51,7 @@ namespace ApartmentProgram {
 
             for (int i = 0; i < vs.Length - 1; i++) {
                 string[] vs1 = vs[i].Split(',');
+                Debug.WriteLine(vs1[i]);
 
                 Vehicle temp = new(Convert.ToInt32(vs1[0]), vs1[1], vs1[2], Convert.ToInt32(vs1[3]), vs1[4], Convert.ToInt32(vs1[5]));
                 _BoundProperties.Vehicles.Add(temp);
@@ -98,7 +99,6 @@ namespace ApartmentProgram {
             string[] vs = Apartments.Split("\n");
 
             for (int i = 0; i < vs.Length - 1; i++) {
-                Debug.WriteLine(vs[i]);
                 string[] vs1 = vs[i].Split(',');
 
                 lease temp;
